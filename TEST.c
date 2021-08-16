@@ -67,6 +67,7 @@ int	ft_print_arr_env(char **arr)
 
 int ft_print_token(t_list *token, char *name)
 {
+	printf("**%s**\n", name);
 	while (token)
 	{
 		printf("token.content=%s\n", (char *)token->content);

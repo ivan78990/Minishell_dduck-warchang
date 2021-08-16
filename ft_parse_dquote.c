@@ -45,6 +45,7 @@ char	*ft_dquot(char *str, int *i, char **env)
 	char	*tmp3;
 
 	j = *i;
+//	printf("ft_dquot str_aft=%s\n", str);
 	while (str[++(*i)])
 	{
 		if (str[*i] == '\\' && (str[*i + 1] == '\"' || str[*i + 1] == '$'
@@ -55,6 +56,8 @@ char	*ft_dquot(char *str, int *i, char **env)
 		if (str[*i] == '\"')
 			break ;
 	}
+//	printf("ft_dquot str_bef=%s\n", str);
+
 	tmp = ft_substr(str, 0, j);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
 	tmp3 = ft_strdup(str + *i + 1);

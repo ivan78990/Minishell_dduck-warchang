@@ -37,7 +37,10 @@ int ft_flag_token(t_list *lst_token, t_data *data)
 	int flag_quote;
 
 	flag_quote = 0;
+	printf("after token=%s\n", lst_token->content);
 	new_token_content = ft_parse_processor(lst_token->content, data->my_env, &flag_quote);
+	printf("before token=%s\n", new_token_content);
+
 	ft_free_ptr(lst_token->content);
 	lst_token->content = ft_strdup(new_token_content);
 	ft_free_ptr(new_token_content);
@@ -57,31 +60,31 @@ t_list	*ft_get_pos_list_token(int count_drop, t_list *lst_token)
 	return (lst_token);
 }
 
-t_list	*ft_lstclear_of_quote_and_dollar(t_list *lst_token, char **env)
-{
-	char	*clear_token;
-	char	*tmp_content;
-	t_list	*clear_list_token;
-	t_list	*tmp_lst;
-
-	clear_token = NULL;
-	tmp_content = NULL;
-	clear_list_token = NULL;
-	tmp_lst = NULL;
-	if (!lst_token)
-		return (NULL);
-	tmp_lst = lst_token;
-	while (lst_token)
-	{
-		tmp_content = lst_token->content;
-		clear_token = ft_parse_processor(tmp_content, env, NULL);
-		ft_lstadd_back(&clear_list_token, ft_lstnew(ft_strdup(clear_token)));
-		ft_free_ptr(clear_token);
-		lst_token = lst_token->next;
-	}
-	ft_lstclear(&tmp_lst, ft_free_ptr);
-	return (clear_list_token);
-}
+//t_list	*ft_lstclear_of_quote_and_dollar(t_list *lst_token, char **env)
+//{
+//	char	*clear_token;
+//	char	*tmp_content;
+//	t_list	*clear_list_token;
+//	t_list	*tmp_lst;
+//
+//	clear_token = NULL;
+//	tmp_content = NULL;
+//	clear_list_token = NULL;
+//	tmp_lst = NULL;
+//	if (!lst_token)
+//		return (NULL);
+//	tmp_lst = lst_token;
+//	while (lst_token)
+//	{
+//		tmp_content = lst_token->content;
+//		clear_token = ft_parse_processor(tmp_content, env, NULL);
+//		ft_lstadd_back(&clear_list_token, ft_lstnew(ft_strdup(clear_token)));
+//		ft_free_ptr(clear_token);
+//		lst_token = lst_token->next;
+//	}
+//	ft_lstclear(&tmp_lst, ft_free_ptr);
+//	return (clear_list_token);
+//}
 
 t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 {
@@ -104,8 +107,7 @@ t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 		ft_lstadd_back(&lst_token_tmp,
 			ft_lstnew(ft_substr(str, tc.start, tc.j)));
 	}
-//	printf("ft_get_token\n");
-//	ft_print_token(lst_token_tmp);
+	ft_print_token(lst_token_tmp, "ft_get_token");
 	if (!ft_check_token_syntax(lst_token_tmp))
 		*flag_error_syntax = 1;
 	return (lst_token_tmp);
