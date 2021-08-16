@@ -52,11 +52,8 @@ void	ft_iterator_redir(const char *str, t_count *tc)
 // Проверка на кавычки // Сделать кавычки, идущие без пробела - олним токеном ?-
 void	ft_check_tokensym(char *str, t_count *tc)
 {
-	char ch;
-
 	if (ft_strchr(QUOTE_SYM, str[tc->i]))
 	{
-		ch = 	str[tc->i];
 		while (str[tc->i])
 		{
 			if (str[tc->i] == '\'')
