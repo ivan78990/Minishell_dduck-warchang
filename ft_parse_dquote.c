@@ -65,6 +65,6 @@ char	*ft_dquot(char *str, int *i, char **env)
 	str = ft_strjoin(tmp, tmp2);
 	ft_free_ptr(tmp);
 	tmp = ft_strjoin_and_free(str, tmp2, tmp3);
-	(*i)++;
+//	(*i)++;
 	return (tmp);
 }

@@ -37,9 +37,9 @@ int ft_flag_token(t_list *lst_token, t_data *data)
 	int flag_quote;
 
 	flag_quote = 0;
-	printf("after token=%s\n", lst_token->content);
+//	printf("after pars token=%s\n", lst_token->content);
 	new_token_content = ft_parse_processor(lst_token->content, data->my_env, &flag_quote);
-	printf("before token=%s\n", new_token_content);
+//	printf("before pars token=%s\n", new_token_content);
 
 	ft_free_ptr(lst_token->content);
 	lst_token->content = ft_strdup(new_token_content);
@@ -107,7 +107,7 @@ t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 		ft_lstadd_back(&lst_token_tmp,
 			ft_lstnew(ft_substr(str, tc.start, tc.j)));
 	}
-	ft_print_token(lst_token_tmp, "ft_get_token");
+//	ft_print_token(lst_token_tmp, "ft_get_token");
 	if (!ft_check_token_syntax(lst_token_tmp))
 		*flag_error_syntax = 1;
 	return (lst_token_tmp);

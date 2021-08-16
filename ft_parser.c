@@ -68,11 +68,15 @@ char *ft_parse_processor(char *str, char **env, int *flag_qoute)
 		if (tmp[i] == '\'')
 		{
 			tmp = ft_quot(tmp, &i);
+			i -= 2;
 			*flag_qoute = 1;
 		}
 		if (tmp[i] == '\"')
 		{
+//			printf("tmp bef dquote=%s\n", tmp);
 			tmp = ft_dquot(tmp, &i, env);
+//			printf("tmp aft dquote=%s\n", tmp);
+			i -= 2;
 			*flag_qoute = 1;
 		}
 		if (tmp[i] == '\\')

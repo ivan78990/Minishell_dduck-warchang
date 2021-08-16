@@ -28,7 +28,7 @@ void ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
 	char *tmp_after;
 
 
-	tmp_bef = ft_substr(*str, 0, cnt->j); //первая часть
+	tmp_bef = ft_substr(*str, 0, cnt->j);
 	tmp_after = ft_strdup(*str + *i);
 	ft_free_ptr(*tmp);
 	*tmp = ft_strjoin(tmp_bef, tmp_after);
