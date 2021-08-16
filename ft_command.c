@@ -58,6 +58,7 @@ t_comm *ft_get_command(t_count *cnt, t_list *lst_token, t_data *data)
 
 	new_command = NULL;
 	lst_token = ft_get_pos_list_token(cnt->count_drop_token, lst_token);
+//	ft_print_token(lst_token, "ft_get_command");
 	new_command = ft_parse_token_for_comm(cnt, lst_token, data);
 	cnt->k = 0;
 	ft_get_number_lst_redir(new_command->lst_redir);
@@ -83,5 +84,6 @@ t_list	*ft_get_list_comm(t_data *data, t_list *lst_token)
 		ft_lstadd_back(&new_lst_comm, ft_lstnew(command));
 		i++;
 	}
+//	ft_print_comm(new_lst_comm, "ft_get_list_comm");
 	return (new_lst_comm);
 }

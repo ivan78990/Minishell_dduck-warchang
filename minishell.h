@@ -201,9 +201,9 @@ t_lst_env	*ft_lst_env_del_elem(t_lst_env *lst_before, t_lst_env *lst_env);
 void		ft_new_val_for_key(t_data *data, char *key, char *val);
 ////TEST
 int			ft_print_arr_env(char **arr);
-int			ft_print_token(t_list *token);
+int ft_print_token(t_list *token, char *name);
 void		ft_print_env_test(t_lst_env *lst_env);
-void		ft_print_comm(t_list *lst_comm);
+void ft_print_comm(t_list *lst_comm, char *name);
 
 ////List_Utils
 t_lst_env	*ft_init_lst_env(char *cont_env);

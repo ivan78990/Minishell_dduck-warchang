@@ -21,13 +21,14 @@ void	ft_print_print(t_comm *comm)
 		   comm->flag_after_redir);
 }
 
-void	ft_print_comm(t_list *lst_comm)
+void ft_print_comm(t_list *lst_comm, char *name)
 {
 	int		i;
 	t_comm	*comm;
 	t_redir	*redir;
 	char	**arr;
 
+	printf("**%s**\n", name);
 	while (lst_comm)
 	{
 		comm = lst_comm->content;
@@ -64,7 +65,7 @@ int	ft_print_arr_env(char **arr)
 	return (0);
 }
 
-int	ft_print_token(t_list *token)
+int ft_print_token(t_list *token, char *name)
 {
 	while (token)
 	{

@@ -21,6 +21,7 @@ t_list	*ft_preparser(t_data *data, char *input)
 	}
 	data->count_pipe = ft_get_count_pipe(lst_token);
 	lst_comm = ft_parser(data, lst_token);
+//	ft_print_token(lst_token, "ft_preparser");
 	ft_lstclear(&lst_token, ft_free_ptr);
 	return (lst_comm);
 }
