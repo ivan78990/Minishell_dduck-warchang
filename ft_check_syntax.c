@@ -49,6 +49,16 @@ int	ft_check_syntax_redir(const char *str, int len)
 	i = -1;
 	while (str[++i] && i + 1 < len)
 	{
+		if (str[i] == '\"')
+		{
+			while (str[++i] != '\"')
+				;
+		}
+		if (str[i] == '\'')
+		{
+			while (str[++i] != '\'')
+				;
+		}
 		if (((str[i] == '<') && (str[i + 1] == '>'))
 			|| ((str[i] == '>') && (str[i + 1] == '<')))
 			return (1);
@@ -77,6 +87,7 @@ int	ft_check_syntax(char *str, int str_len)
 		return (1);
 	while (ft_isspace(str[len]))
 		len--;
+
 	if (ft_check_sym(str[len], 1))
 		return (1);
 	if (ft_strchr(&str[len], '\\'))
