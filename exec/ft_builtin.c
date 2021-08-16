@@ -7,12 +7,24 @@ void	ft_exit(char **args)
 	ret_exit = 0;
 	if (args[0])
 	{
+		if (args[1])
+		{
+			ft_putendl_fd("exit", 1);
+			ft_putendl_fd("bash: exit: too many arguments", 1);
+			g_global.return_value = 1;
+			exit(1);
+
+		}
 		if (!ft_isalpha(args[0][0]))
 		{
 			ret_exit = ft_atoi(args[0]);
+			ft_putendl_fd("exit", 1);
+			g_global.return_value = ret_exit;
 			exit(ret_exit);
 		}
 	}
+	ft_putendl_fd("exit", 1);
+	g_global.return_value = ret_exit;
 	exit(ret_exit);
 }
 

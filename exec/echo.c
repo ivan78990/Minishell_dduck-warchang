@@ -1,51 +1,48 @@
 #include "../minishell.h"
 
-int	n_flag(args, j)
-
-
-void	printing(char **args, int j, int fd, int n)
+static void	printing(char **str, int pos, int fd)
 {
-	int i;
+	int		strt;
+	int		end;
+	int		str_len;
 
-	i = 0;
-	while(args[i])
-		++i;
-	while (j < i)
-	{
-		ft_putstr_fd(args[i], fd);
-		ft_putstr_fd(" ", fd);
-		j++;
-	}
-	ft_putstr_fd(args[i], fd);
-	if (n == 0)
-		ft_putstr_fd("\n", fd);
+	strt = (str[pos][0] == '"' || str[pos][0] == '\'');
+	str_len = (int)ft_strlen(str[pos]);
+	end = (str[pos][str_len - 1] == '"' || str[pos][str_len - 1] == '\'' );
+	if (end && strt)
+		ft_putnstr(str[pos] + 1, -1, fd);
+	else if (end)
+		ft_putnstr(str[pos], -1, fd);
+	else if (strt)
+		ft_putstr_fd(str[pos] + 1, fd);
+	else
+		ft_putstr_fd(str[pos], fd);
+	if (str[pos + 1])
+		ft_putchar_fd(' ', fd);
 }
 
 int	echo_b(char **args, int fd)
 {
-	int i;
-	int j;
-	int n;
+	int		i;
+	int		n_flag;
 
-	i = -1;
-	j = 0;
-	n = 0;
-	while (args[i])
-		++i;
-	if (i > 0)
+	n_flag = 0;
+	if (!args[0])
 	{
-		if (!ft_strcmp(args[j], "-n"))
-		{
-			while (!n_flag(args, j))
-				j++;
-			n++;
-			printing(args, j, fd, n);
-		}
-		else
-			printing(args, j, fd, n);
+		write(fd, "\n", 1);
+		return (1);
 	}
-	else
-		ft_putstr_fd("\n", fd);
+	if (!ft_strcmp(args[0], "-n"))
+		n_flag = 1;
+	i = -1;
+	if (n_flag)
+		++i;
+	while (args[++i])
+	{
+		printing(args, i, fd);
+		if (!args[i + 1] && !n_flag)
+			ft_putchar_fd('\n', fd);
+	}
 	g_global.return_value = 0;
 	return (1);
 }

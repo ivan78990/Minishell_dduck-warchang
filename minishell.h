@@ -126,7 +126,7 @@ void		ft_free_arr(char **arr);
 void		ft_free_ptr(void *ptr);
 void		ft_init_count(t_count *count);
 ////ft_parser
-char		*ft_parse_processor(char *str, char **env);
+char *ft_parse_processor(char *str, char **env, int *flag_qoute);
 char		*ft_slash(char *str, int *i);
 ////ft_token
 t_list		*ft_get_list_comm(t_data *data, t_list *token);
@@ -190,8 +190,7 @@ void		ft_free_redir_str(void *redir_strct);
 ////ft_export
 void		ft_get_new_lst_env(t_data *data, char *new_str_env, char *key,
 				char *val);
-void		ft_get_arg(const char *str, t_comm *comm);
-int			ft_flag_token(char *str);
+int ft_flag_token(t_list *lst_token, t_data *data);
 ////
 void		ft_exit(char **args);
 int			ft_pwd(t_comm *comm);

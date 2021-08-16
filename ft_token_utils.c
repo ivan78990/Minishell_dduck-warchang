@@ -14,23 +14,37 @@
 
 void	ft_get_arg(const char *str, t_comm *comm)
 {
-	if (str)
-	{
 		comm->cnt_arg++;
 		comm->flag_nonarg = 0;
-	}
 }
 
-int	ft_flag_token(char *str)
+int ft_get_flag_token_for_first_sym(char *str)
+{
+	if (!ft_strcmp(str, ""))
+		return (1);
+	if (ft_strchr(SPEC_PIP, str[0]))
+		return (2);
+	if (ft_strchr(SPEC_REDIR, str[0]))
+		return (3);
+	else
+		return (1);
+}
+
+int ft_flag_token(t_list *lst_token, t_data *data)
 {
 	int	i;
+	char *new_token_content;
+	int flag_quote;
 
-	i = 0;
-	if (ft_strchr(SPEC_PIP, str[i]))
-		return (2);
-	if (ft_strchr(SPEC_REDIR, str[i]))
-		return (3);
-	return (1);
+	flag_quote = 0;
+	new_token_content = ft_parse_processor(lst_token->content, data->my_env, &flag_quote);
+	ft_free_ptr(lst_token->content);
+	lst_token->content = ft_strdup(new_token_content);
+	ft_free_ptr(new_token_content);
+	if (flag_quote)
+		return (1);
+	i = ft_get_flag_token_for_first_sym(lst_token->content);
+	return (i);
 }
 
 t_list	*ft_get_pos_list_token(int count_drop, t_list *lst_token)
@@ -60,7 +74,7 @@ t_list	*ft_lstclear_of_quote_and_dollar(t_list *lst_token, char **env)
 	while (lst_token)
 	{
 		tmp_content = lst_token->content;
-		clear_token = ft_parse_processor(tmp_content, env);
+		clear_token = ft_parse_processor(tmp_content, env, NULL);
 		ft_lstadd_back(&clear_list_token, ft_lstnew(ft_strdup(clear_token)));
 		ft_free_ptr(clear_token);
 		lst_token = lst_token->next;
@@ -73,9 +87,7 @@ t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 {
 	t_count	tc;
 	t_list	*lst_token_tmp;
-	t_list	*lst_token;
 
-	lst_token = NULL;
 	lst_token_tmp = NULL;
 	ft_init_count(&tc);
 	tc.len = (int) ft_strlen(str);
@@ -92,8 +104,9 @@ t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 		ft_lstadd_back(&lst_token_tmp,
 			ft_lstnew(ft_substr(str, tc.start, tc.j)));
 	}
+//	printf("ft_get_token\n");
+//	ft_print_token(lst_token_tmp);
 	if (!ft_check_token_syntax(lst_token_tmp))
 		*flag_error_syntax = 1;
-	lst_token = ft_lstclear_of_quote_and_dollar(lst_token_tmp, data->my_env);
-	return (lst_token);
+	return (lst_token_tmp);
 }

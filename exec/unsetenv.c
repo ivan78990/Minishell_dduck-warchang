@@ -26,7 +26,7 @@ t_lst_env	*ft_find_unset(t_lst_env *lst_env, t_lst_env *lst_strt, char *key)
 		}
 		tmp_lst_bef = lst_env;
 		lst_env = lst_env->next;
-		if (!ft_strcmp(key, lst_env->key))
+		if (lst_env && (!ft_strcmp(key, lst_env->key)))
 		{
 			ft_lst_env_del_elem(tmp_lst_bef, lst_env);
 			break ;

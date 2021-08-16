@@ -9,6 +9,7 @@ char	*path_home(char *path, int rev_pars, t_data *data)
 	if (!path)
 		return (NULL);
 	home_path = env_val("HOME", data);
+	printf("home is : %s\n", home_path);
 	if (rev_pars)
 		res = ft_strstartswith(path, "~");
 	else

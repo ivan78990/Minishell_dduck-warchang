@@ -49,19 +49,29 @@ void	ft_iterator_redir(const char *str, t_count *tc)
 	tc->i -= 1;
 }
 
-// Проверка на кавычки
+// Проверка на кавычки // Сделать кавычки, идущие без пробела - олним токеном ?-
 void	ft_check_tokensym(char *str, t_count *tc)
 {
+	char ch;
+
 	if (ft_strchr(QUOTE_SYM, str[tc->i]))
 	{
-		if (str[tc->i] == '\'')
+		ch = 	str[tc->i];
+		while (str[tc->i])
 		{
-			while (str[++tc->i] != '\'' && tc->i <= tc->len)
-				tc->j++;
+			if (str[tc->i] == '\'')
+			{
+				while (str[++tc->i] != '\'' && tc->i <= tc->len)
+					tc->j++;
+			}
+			else if (str[tc->i] == '\"')
+				ft_iterator_dquote(str, tc);
+			if (!ft_strchr(QUOTE_SYM, str[tc->i+1]))
+				break ;
+			tc->i++;
+			tc->j += 2;
 		}
-		else if (str[tc->i] == '\"')
-			ft_iterator_dquote(str, tc);
-		tc->j += 2;
+
 	}
 	else if (!ft_check_sym(str[tc->i], 1))
 		ft_iterator_nonspec(str, tc);

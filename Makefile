@@ -4,6 +4,7 @@ SRCS		=	exec/export.c \
 				exec/unsetenv.c \
 				exec/ft_unset_utils.c \
 				exec/cd.c \
+				exec/echo.c \
 				exec/ft_builtin.c	\
 				exec.c \
 				exec_chart2.c	\
@@ -55,7 +56,7 @@ FL_RDLN		=	-lreadline
 
 %.o:%.c
 				gcc -c -g $< -o $@
-				gcc -Wall -Wextra -Werror -c $< -o $@
+				#gcc  -Wall -Wextra -Werror -c $< -o $@
 
 $(NAME):		$(OBJS) $(LBFTDR)
 				make bonus -C $(LBFTDR)

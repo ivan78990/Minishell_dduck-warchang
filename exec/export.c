@@ -103,8 +103,7 @@ int	export(char **args, t_data *data, int in_fd)
 	{
 		if (args[i])
 		{
-			if (!ft_isalpha(args[i][0]) && args[i][0] != '_'
-				&& args[i][0] != '+')
+			if (!ft_isalpha(args[i][0]) && args[i][0] != '_')
 			{
 				ft_putendl_fd("export: not a valid identifier", 2);
 				g_global.return_value = 1;

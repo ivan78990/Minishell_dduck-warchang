@@ -23,7 +23,8 @@ void	ft_tkn_proc_arg(t_count *cnt, t_comm *comm, t_list *tkn)
 	}
 	else
 	{
-		ft_get_arg(tkn->content, comm);
+		comm->cnt_arg++;
+		comm->flag_nonarg = 0;
 		cnt->z++;
 	}
 }

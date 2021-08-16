@@ -55,7 +55,7 @@ char	*ft_quot(char *str, int *i)
 	return (tmp);
 }
 
-char	*ft_parse_processor(char *str, char **env)
+char *ft_parse_processor(char *str, char **env, int *flag_qoute)
 {
 	int		i;
 	char	*tmp;
@@ -66,9 +66,15 @@ char	*ft_parse_processor(char *str, char **env)
 	while (tmp[++i])
 	{
 		if (tmp[i] == '\'')
+		{
 			tmp = ft_quot(tmp, &i);
+			*flag_qoute = 1;
+		}
 		if (tmp[i] == '\"')
+		{
 			tmp = ft_dquot(tmp, &i, env);
+			*flag_qoute = 1;
+		}
 		if (tmp[i] == '\\')
 			tmp = ft_slash(tmp, &i);
 		if (tmp[i] == '$')
