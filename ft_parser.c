@@ -52,10 +52,11 @@ char	*ft_quot(char *str, int *i)
 	ft_free_ptr(tmp3);
 	ft_free_ptr(tmp4);
 	ft_free_ptr(str);
+	*i -= 2;
 	return (tmp);
 }
 
-char *ft_parse_processor(char *str, char **env, int *flag_qoute)
+char	*ft_parse_processor(char *str, char **env, int *flag_qoute)
 {
 	int		i;
 	char	*tmp;
