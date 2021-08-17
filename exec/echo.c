@@ -41,7 +41,7 @@ int	echo_b(t_comm *comm, int fd)
 
 	if (comm->cnt_arg > 0)
 	{
-		if (ft_strnstr(comm->arg[j], "-n", 2) != NULL)
+		if (ft_strnstr(comm->arg[j], "-n", 2) != NULL && comm->arg[j + 1])
 		{
 			while (!n_flag(comm->arg, j))
 				j++;

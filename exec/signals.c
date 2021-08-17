@@ -37,3 +37,9 @@ void	signal_normal(void)
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, ctrl_slash);
 }
+
+void signals_ign()
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
+}
