@@ -11,7 +11,6 @@ void	cycle_readline(t_list *lst_comm, t_data *data, char *input)
 		if (input == NULL)
 			break ;
 		lst_comm = ft_preparser(data, input);
-//		ft_print_comm(lst_comm, "wait");
 		add_history(input);
 		if (lst_comm)
 		{

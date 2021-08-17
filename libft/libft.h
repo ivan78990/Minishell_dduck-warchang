@@ -27,7 +27,7 @@ typedef struct s_list
 
 int					ft_countwords(char const *str, char c);
 int					ft_strequ(char const *s1, char const *s2);
-int					ft_atoi(const char *str);
+long long			ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_isalnum(int c);

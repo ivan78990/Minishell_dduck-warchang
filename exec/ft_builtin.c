@@ -20,7 +20,6 @@ void	ft_exit(char **args)
 		}
 		else
 		{
-
 			ret_exit = ft_atoi(args[0]);
 			if (ret_exit <= 0)
 			{
