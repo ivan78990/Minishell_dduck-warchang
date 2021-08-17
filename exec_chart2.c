@@ -29,7 +29,7 @@ int	is_builtin(t_comm *comm, t_data *data)
 			return (ft_pwd(comm));
 		else if (ft_strequ(comm->arg[0], "echo"))
 			return (echo_b(comm, comm->fd_write));
-		else if (!ft_strcmp(comm->arg, "cd"))
+		else if (!ft_strcmp(comm->arg[0], "cd"))
 			return (cd_b(comm->arg + 1, data));
 		else if (!ft_strcmp(comm->arg[0], "export"))
 			return (export(comm->arg + 1, data, comm->fd_write));

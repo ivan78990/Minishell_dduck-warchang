@@ -23,7 +23,7 @@ static char	*ft_strjoin_and_free(char *str, char *tmp2, char *tmp3)
 	return (str_ret);
 }
 
-char	*ft_dquot(char *str, int *i, char **env)
+char *ft_dquot(char *str, int *i, char **env, int *flag_quote)
 {
 	int		j;
 	char	*tmp;
@@ -31,6 +31,7 @@ char	*ft_dquot(char *str, int *i, char **env)
 	char	*tmp3;
 
 	j = *i;
+	*flag_quote = 1;
 	while (str[++(*i)])
 	{
 		if (str[*i] == '\\' && (str[*i + 1] == '\"' || str[*i + 1] == '$'
@@ -48,6 +49,5 @@ char	*ft_dquot(char *str, int *i, char **env)
 	str = ft_strjoin(tmp, tmp2);
 	ft_free_ptr(tmp);
 	tmp = ft_strjoin_and_free(str, tmp2, tmp3);
-	*i -= 2;
 	return (tmp);
 }

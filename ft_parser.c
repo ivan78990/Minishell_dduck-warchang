@@ -28,7 +28,7 @@ char	*ft_slash(char *str, int *i)
 	return (tmp3);
 }
 
-char	*ft_quot(char *str, int *i)
+char *ft_quot(char *str, int *i, int *flag_quote)
 {
 	int		j;
 	char	*tmp;
@@ -37,6 +37,7 @@ char	*ft_quot(char *str, int *i)
 	char	*tmp4;
 
 	j = *i;
+	*flag_quote = 1;
 	while (str[++(*i)])
 	{
 		if (str[*i] == '\'')
@@ -52,7 +53,7 @@ char	*ft_quot(char *str, int *i)
 	ft_free_ptr(tmp3);
 	ft_free_ptr(tmp4);
 	ft_free_ptr(str);
-	*i -= 2;
+	(*i)++;
 	return (tmp);
 }
 
@@ -68,13 +69,13 @@ char	*ft_parse_processor(char *str, char **env, int *flag_qoute)
 	{
 		if (tmp[i] == '\'')
 		{
-			tmp = ft_quot(tmp, &i);
-			*flag_qoute = 1;
+			tmp = ft_quot(tmp, &i, flag_qoute);
+			i -= 2;
 		}
 		if (tmp[i] == '\"')
 		{
-			tmp = ft_dquot(tmp, &i, env);
-			*flag_qoute = 1;
+			tmp = ft_dquot(tmp, &i, env, flag_qoute);
+			i -= 2;
 		}
 		if (tmp[i] == '\\')
 			tmp = ft_slash(tmp, &i);

@@ -160,7 +160,7 @@ int			*ft_get_posenv(char *str, int *i);
 ////ft_parse_dollar_utils
 void		ft_check_env(char **env, t_count *cnt, char *tmp);
 ////ft_parse_dquote
-char		*ft_dquot(char *str, int *i, char **env);
+char *ft_dquot(char *str, int *i, char **env, int *flag_quote);
 ////ft_parser_utils
 //int	ft_symcount(t_list *lst_comm);
 ////ft_utils
