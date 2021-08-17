@@ -22,7 +22,7 @@ char	**ft_get_envarr_of_envlst(t_lst_env *first_lstenv, t_data *data)
 		return (NULL);
 	arr_env = ft_calloc(data->count_env + 1, (sizeof (char *)));
 	if (!arr_env)
-		exit(0);
+		exit(1);
 	while (first_lstenv)
 	{
 		arr_env[i] = ft_strdup(first_lstenv->env);
@@ -48,10 +48,7 @@ int	ft_parse_env(t_lst_env *env)
 		env->val = ft_substr(env->env, ravno + 1, len_val - 1);
 	}
 	else
-	{
 		env->key = ft_strdup(env->env);
-		env->val = NULL;
-	}
 	return (0);
 }
 
