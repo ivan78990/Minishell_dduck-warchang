@@ -65,6 +65,7 @@ t_lst_env	*ft_refresh_env_of_arrenv(t_data *data)
 void	ft_free_env_struct(t_lst_env *lst_env)
 {
 	ft_free_ptr(lst_env->key);
-	ft_free_ptr(lst_env->val);
+	if (lst_env->val)
+		ft_free_ptr(lst_env->val);
 	ft_free_ptr(lst_env->env);
 }
