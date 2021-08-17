@@ -30,6 +30,7 @@ void	ft_prepare(t_data *data, char **env)
 	t_lst_env	*lst_env;
 
 	lst_env = NULL;
+	rl_outstream = stderr;
 	rl_bind_key('\t', rl_complete);
 	if (!data->count_env)
 		lst_env = ft_get_lst_ienv(data);

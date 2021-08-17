@@ -33,6 +33,7 @@ void	ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
 	*tmp = ft_strjoin(tmp_bef, tmp_after);
 	ft_free_ptr(tmp_bef);
 	ft_free_ptr(tmp_after);
+	*i = cnt->j;
 }
 
 char	*ft_dollar(char *str, int *i, char **env)
