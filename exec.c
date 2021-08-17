@@ -91,8 +91,11 @@ int	simplest_exec(t_comm *comm, t_data *data)
 		else if (file.st_mode & S_IXUSR)
 			return (execution1(ft_strdup(comm->arg[0]), comm, data));
 	}
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(comm->arg[0]);
+	if (comm->flag_nonarg && comm->command)
+	{
+		ft_putstr("minishell: command not found: ");
+		ft_putendl(comm->arg[0]);
+	}
 	g_global.return_value = 127;
 	return (0);
 }

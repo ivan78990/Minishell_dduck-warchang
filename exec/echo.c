@@ -1,48 +1,60 @@
 #include "../minishell.h"
 
-static void	printing(char **str, int pos, int fd)
-{
-	int		strt;
-	int		end;
-	int		str_len;
-
-	strt = (str[pos][0] == '"' || str[pos][0] == '\'');
-	str_len = (int)ft_strlen(str[pos]);
-	end = (str[pos][str_len - 1] == '"' || str[pos][str_len - 1] == '\'' );
-	if (end && strt)
-		ft_putnstr(str[pos] + 1, -1, fd);
-	else if (end)
-		ft_putnstr(str[pos], -1, fd);
-	else if (strt)
-		ft_putstr_fd(str[pos] + 1, fd);
-	else
-		ft_putstr_fd(str[pos], fd);
-	if (str[pos + 1])
-		ft_putchar_fd(' ', fd);
-}
-
-int	echo_b(char **args, int fd)
+int	n_flag(char **args, int j)
 {
 	int		i;
-	int		n_flag;
 
-	n_flag = 0;
-	if (!args[0])
+	i = 0;
+	if (args[j][0] == '-')
 	{
-		write(fd, "\n", 1);
-		return (1);
+		while (args[j][++i] != '\0')
+		{
+			if (args[j][i] != 'n')
+				return (-1);
+		}
+		return (0);
 	}
-	if (!ft_strcmp(args[0], "-n"))
-		n_flag = 1;
-	i = -1;
-	if (n_flag)
-		++i;
-	while (args[++i])
+	return (-1);
+}
+
+
+void	printing(t_comm *comm, int j, int fd, int n)
+{
+	while (j < comm->cnt_arg)
 	{
-		printing(args, i, fd);
-		if (!args[i + 1] && !n_flag)
-			ft_putchar_fd('\n', fd);
+		ft_putstr_fd(comm->arg[j], fd);
+		ft_putstr_fd(" ", fd);
+		j++;
 	}
+	ft_putstr_fd(comm->arg[j], fd);
+	if (n == 1)
+		ft_putstr_fd("\n", fd);
+}
+
+int	echo_b(t_comm *comm, int fd)
+{
+	int j;
+	int no_n;
+
+	j = 0;
+	no_n = 0;
+
+	if (comm->cnt_arg > 1)
+	{
+		if (ft_strnstr(comm->arg[j], "-n", 2) != NULL)
+		{
+			while (!n_flag(comm->arg, j))
+				j++;
+			printing(comm, j, fd, no_n);
+		}
+		else
+		{
+			no_n++;
+			printing(comm, j, fd, no_n);
+		}
+	}
+	else
+		ft_putstr_fd("\n", fd);
 	g_global.return_value = 0;
 	return (1);
 }

@@ -29,8 +29,8 @@ void	change_directory(char *path, int new_path, t_data *data)
 		ft_putstr("cd: ");
 		if (access(path, F_OK) == -1)
 			ft_putstr("no such file or directory: ");
-		else if (access(path, R_OK) == -1)
-			ft_putstr("permission denied: ");
+//		else if (access(path, R_OK) == -1)
+//			ft_putstr("permission denied: ");
 		else
 			ft_putstr("not a directory: ");
 		ft_putendl(path);

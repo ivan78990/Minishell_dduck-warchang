@@ -103,7 +103,7 @@ int			is_builtin(t_comm *comm, t_data *data);
 int			exec_fork(t_list *lst_comm, t_data *data, int stdin);
 int			simplest_exec(t_comm *comm, t_data *data);
 char		*ft_strstr(const char *big, const char *little);
-int			echo_b(char **args, int fd);
+int			echo_b(t_comm *comm, int fd);
 int			unset_built(char **args, t_data *data);
 void		print_env(t_data *data, int fd);
 t_list		*ft_put_syntax_error(char *str_error);
