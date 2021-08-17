@@ -36,10 +36,10 @@ int	echo_b(t_comm *comm, int fd)
 	int j;
 	int no_n;
 
-	j = 0;
+	j = 1;
 	no_n = 0;
 
-	if (comm->cnt_arg > 1)
+	if (comm->cnt_arg > 0)
 	{
 		if (ft_strnstr(comm->arg[j], "-n", 2) != NULL)
 		{
