@@ -26,7 +26,6 @@ void	ctrl_slash(int signo)
 
 void	conrol_d(void)
 {
-	write(2, "\033[3;1m", 7);
 	write(2, "\e[1A\e[11Cexit\n", 15);
 	g_global.recieved = 0;
 	exit(0);
