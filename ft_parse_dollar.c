@@ -34,6 +34,7 @@ void	ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
 	ft_free_ptr(tmp_bef);
 	ft_free_ptr(tmp_after);
 	*i = cnt->j;
+//	*i = cnt->j - 1;
 }
 
 char	*ft_dollar(char *str, int *i, char **env)
