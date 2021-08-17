@@ -28,16 +28,24 @@ void	exec_child(int *fds, t_comm *comm, t_data *data)
 	close(fds[0]);
 	if (exec_fd(comm))
 		exit(1);
-	if (comm->flag_after_redir)
-		close(comm->fd_read);
+//	if (comm->flag_after_redir)
+//		close(comm->fd_read);
 	if (is_builtin(comm, data))
 		exit(0);
-	is_bins(comm, data);
-	if (comm->lst_redir)
+	if (is_bins(comm, data))
 	{
-		close(comm->fd_write);
-		close(comm->fd_read);
+		g_global.return_value = 127;
+		exit(127);
 	}
+//	if (comm->lst_redir)
+//	{
+//		close(comm->fd_write);
+//		close(comm->fd_read);
+//	}
+	ft_putstr("minishell: command not found: ");
+	ft_putendl(comm->arg[0]);
+	g_global.return_value = 127;
+	exit(127);
 }
 
 int	exec_fork(t_list *lst_comm, t_data *data, int in)
@@ -58,6 +66,7 @@ int	exec_fork(t_list *lst_comm, t_data *data, int in)
 	}
 	if (comm->pid != 0)
 	{
+		signals_def(SIGINT);
 		close(fds[1]);
 		init_pipe = exec_fork(lst_comm->next, data, fds[0]);
 	}

@@ -14,16 +14,6 @@ void	ctrl_c(int signo)
 	}
 }
 
-void	ctrl_slash(int signo)
-{
-	if (signo == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-		write(2, "", 1);
-	}
-}
-
 void	conrol_d(void)
 {
 	write(2, "\e[1A\e[11Cexit\n", 15);
@@ -46,4 +36,12 @@ void signals_ign(int signo)
 	}
 }
 
-//signal(SIGINT, SIG_DFL);
+void signals_def(int signo)
+{
+	if (signo)
+	{
+//		signal(SIGINT, SIG_DFL);
+//		signal(SIGQUIT, SIG_DFL);
+		ctrl_c(SIGINT);
+	}
+}

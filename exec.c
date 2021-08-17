@@ -22,7 +22,7 @@ void	switch_fd(char *path, t_comm *comm, t_data *data)
 	if (comm->fd_write >= 0)
 		dup2(comm->fd_write, 1);
 	if (execve(path, comm->arg, data->my_env) == -1)
-		error_text(comm->command);
+		error_text(comm->arg[0]);
 }
 
 int	execution1(char *path, t_comm *comm, t_data *data)
@@ -57,7 +57,8 @@ int	execution2(char	*path, t_comm *comm, t_data *data)
 	int	flag_redir_write;
 	int	flag_redir_read;
 
-	ft_get_flag_redir(&flag_redir_read, &flag_redir_write, comm->lst_redir);
+	signals_def(SIGINT);
+//	ft_get_flag_redir(&flag_redir_read, &flag_redir_write, comm->lst_redir);
 	if (exec_fd(comm))
 		return (-1);
 	if (comm->fd_read >= 0 )
@@ -65,7 +66,7 @@ int	execution2(char	*path, t_comm *comm, t_data *data)
 	if (comm->fd_write >= 0 )
 		dup2(comm->fd_write, 1);
 	if (execve(path, comm->arg, data->my_env) == -1)
-		error_text(comm->command);
+		error_text(comm->arg[0]);
 	if (path)
 		free(path);
 	g_global.return_value = WEXITSTATUS(ret_value);
@@ -92,11 +93,8 @@ int	simplest_exec(t_comm *comm, t_data *data)
 		else if (file.st_mode & S_IXUSR)
 			return (execution1(ft_strdup(comm->arg[0]), comm, data));
 	}
-	if (comm->flag_nonarg && comm->command)
-	{
-		ft_putstr("minishell: command not found: ");
-		ft_putendl(comm->arg[0]);
-	}
+	ft_putstr("minishell: command not found: ");
+	ft_putendl(comm->arg[0]);
 	g_global.return_value = 127;
 	return (0);
 }

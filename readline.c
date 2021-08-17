@@ -50,6 +50,7 @@ void	kill_child_process(t_list *lst_comm)
 	comm = NULL;
 	while (lst_comm)
 	{
+		printf("kill_child_process1");
 		comm = lst_comm->content;
 		if (comm->pid)
 			kill(comm->pid, SIGKILL);
@@ -67,10 +68,11 @@ void	wait_child_process(t_list *lst_comm)
 	comm = NULL;
 	while (lst_comm)
 	{
-
+//		printf("wait_child_process1\n");
 		comm = lst_comm->content;
 		wait_pid = waitpid(comm->pid, &status, 0);
-		i = (-1 == wait_pid);
+//		printf("wait_pid[%d]\n", wait_pid);
+		i = (-1 == wait_pid );
 		if (!i)
 		{
 			g_global.return_value = WEXITSTATUS(status);
