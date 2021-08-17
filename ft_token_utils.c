@@ -69,6 +69,8 @@ t_list	*ft_get_token(char *str, t_data *data, int *flag_error_syntax)
 			tc.i++;
 		}
 		tc.j = 0;
+		if (tc.i == tc.len)
+			break ;
 		ft_check_tokensym(str, &tc);
 		ft_lstadd_back(&lst_token_tmp,
 			ft_lstnew(ft_substr(str, tc.start, tc.j)));

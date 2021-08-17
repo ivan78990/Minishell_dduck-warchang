@@ -33,9 +33,9 @@ void	ft_print_comm(t_list *lst_comm, char *name)
 	{
 		comm = lst_comm->content;
 		arr = comm->arg;
-		i = 0;
+		i = -1;
 		ft_print_print(comm);
-		while (comm->command && i++ <= comm->cnt_arg)
+		while (comm->command && ++i <= comm->cnt_arg + 1)
 			printf("arg[%d]=%s\n", i, arr[i]);
 		while (comm->lst_redir)
 		{
