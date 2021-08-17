@@ -52,10 +52,11 @@ char	*ft_quot(char *str, int *i)
 	ft_free_ptr(tmp3);
 	ft_free_ptr(tmp4);
 	ft_free_ptr(str);
+	*i -= 2;
 	return (tmp);
 }
 
-char *ft_parse_processor(char *str, char **env, int *flag_qoute)
+char	*ft_parse_processor(char *str, char **env, int *flag_qoute)
 {
 	int		i;
 	char	*tmp;
@@ -68,15 +69,11 @@ char *ft_parse_processor(char *str, char **env, int *flag_qoute)
 		if (tmp[i] == '\'')
 		{
 			tmp = ft_quot(tmp, &i);
-			i -= 2;
 			*flag_qoute = 1;
 		}
 		if (tmp[i] == '\"')
 		{
-//			printf("tmp bef dquote=%s\n", tmp);
 			tmp = ft_dquot(tmp, &i, env);
-//			printf("tmp aft dquote=%s\n", tmp);
-			i -= 2;
 			*flag_qoute = 1;
 		}
 		if (tmp[i] == '\\')

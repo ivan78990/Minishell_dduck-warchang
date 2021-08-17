@@ -22,11 +22,10 @@ void	ft_dollar_change1(char **tmp, char **tmp2, char **tmp3, char **tmp4)
 	ft_free_ptr(*tmp4);
 }
 
-void ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
+void	ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
 {
-	char *tmp_bef;
-	char *tmp_after;
-
+	char	*tmp_bef;
+	char	*tmp_after;
 
 	tmp_bef = ft_substr(*str, 0, cnt->j);
 	tmp_after = ft_strdup(*str + *i);
@@ -34,10 +33,6 @@ void ft_dollar_get_tmp(char **tmp, t_count *cnt, int *i, char **str)
 	*tmp = ft_strjoin(tmp_bef, tmp_after);
 	ft_free_ptr(tmp_bef);
 	ft_free_ptr(tmp_after);
-
-
-
-//	*tmp = ft_strdup("");
 }
 
 char	*ft_dollar(char *str, int *i, char **env)
@@ -48,14 +43,10 @@ char	*ft_dollar(char *str, int *i, char **env)
 	char	*tmp3;
 	char	*tmp4;
 
-//	printf("ft_dollar str_aft=%s\n", str);
-
 	*i = ft_init_dollar(&cnt, i, str);
 	if (*i == cnt.j + 1)
 		return (str);
 	tmp = ft_substr(str, cnt.j + 1, *i - cnt.j - 1);
-//	printf("ft_dollar 11tmp_bef=%s\n", tmp);
-
 	cnt.k = -1;
 	ft_check_env(env, &cnt, tmp);
 	if (cnt.start)
@@ -70,7 +61,5 @@ char	*ft_dollar(char *str, int *i, char **env)
 	else
 		ft_dollar_get_tmp(&tmp, &cnt, i, &str);
 	ft_free_ptr(str);
-//	printf("ft_dollar tmp_bef=%s\n", tmp);
-
 	return (tmp);
 }

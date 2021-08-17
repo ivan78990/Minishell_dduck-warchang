@@ -13,7 +13,6 @@ void	ft_exit(char **args)
 			ft_putendl_fd("bash: exit: too many arguments", 1);
 			g_global.return_value = 1;
 			exit(1);
-
 		}
 		if (!ft_isalpha(args[0][0]))
 		{

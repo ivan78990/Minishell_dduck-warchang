@@ -12,8 +12,7 @@
 
 #include "minishell.h"
 
-
-int ft_get_flag_token_for_first_sym(char *str)
+int	ft_get_flag_token_for_first_sym(char *str)
 {
 	if (!ft_strcmp(str, ""))
 		return (1);
@@ -25,14 +24,15 @@ int ft_get_flag_token_for_first_sym(char *str)
 		return (1);
 }
 
-int ft_flag_token(t_list *lst_token, t_data *data)
+int	ft_flag_token(t_list *lst_token, t_data *data)
 {
-	int	i;
-	char *new_token_content;
-	int flag_quote;
+	int		i;
+	char	*new_token_content;
+	int		flag_quote;
 
 	flag_quote = 0;
-	new_token_content = ft_parse_processor(lst_token->content, data->my_env, &flag_quote);
+	new_token_content = ft_parse_processor(lst_token->content,
+			data->my_env, &flag_quote);
 	ft_free_ptr(lst_token->content);
 	lst_token->content = ft_strdup(new_token_content);
 	ft_free_ptr(new_token_content);

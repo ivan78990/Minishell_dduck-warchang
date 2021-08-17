@@ -39,7 +39,21 @@ int	ft_check_comb(char a, char b, char c)
 	return (0);
 }
 
-int	ft_check_syntax_redir(const char *str, int len)
+void	ft_iter_drop_quote_for_syntax(int *i, char *str)
+{
+	if (str[*i] == '\"')
+	{
+		while (str[++(*i)] != '\"')
+			;
+	}
+	if (str[*i] == '\'')
+	{
+		while (str[++(*i)] != '\'')
+			;
+	}
+}
+
+int	ft_check_syntax_redir(char *str, int len)
 {
 	int		i;
 	char	a;
@@ -49,16 +63,7 @@ int	ft_check_syntax_redir(const char *str, int len)
 	i = -1;
 	while (str[++i] && i + 1 < len)
 	{
-		if (str[i] == '\"')
-		{
-			while (str[++i] != '\"')
-				;
-		}
-		if (str[i] == '\'')
-		{
-			while (str[++i] != '\'')
-				;
-		}
+		ft_iter_drop_quote_for_syntax(&i, str);
 		if (((str[i] == '<') && (str[i + 1] == '>'))
 			|| ((str[i] == '>') && (str[i + 1] == '<')))
 			return (1);
@@ -87,7 +92,6 @@ int	ft_check_syntax(char *str, int str_len)
 		return (1);
 	while (ft_isspace(str[len]))
 		len--;
-
 	if (ft_check_sym(str[len], 1))
 		return (1);
 	if (ft_strchr(&str[len], '\\'))

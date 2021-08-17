@@ -42,9 +42,9 @@ char	*ft_get_val_for_key(t_lst_env *lst_env, char *key)
 	return (NULL);
 }
 
-void ft_write_new_shlvl(t_lst_env *lst_env)
+void	ft_write_new_shlvl(t_lst_env *lst_env)
 {
-	t_lst_env *tmp_env3;
+	t_lst_env	*tmp_env3;
 
 	tmp_env3 = ft_init_lst_env("SHLVL=1");
 	ft_parse_env(tmp_env3);

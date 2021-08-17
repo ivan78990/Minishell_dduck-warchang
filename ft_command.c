@@ -23,7 +23,7 @@ void	ft_prepare_get_command(t_comm **new_command, t_list **lst_redir,
 	*new_command = ft_init_command_struct();
 }
 
-t_comm *ft_parse_token_for_comm(t_count *cnt, t_list *lst_tkn, t_data *data)
+t_comm	*ft_parse_token_for_comm(t_count *cnt, t_list *lst_tkn, t_data *data)
 {
 	t_list	*lst_redir;
 	t_list	*lst_arg;
@@ -52,7 +52,7 @@ t_comm *ft_parse_token_for_comm(t_count *cnt, t_list *lst_tkn, t_data *data)
 	return (new_command);
 }
 
-t_comm *ft_get_command(t_count *cnt, t_list *lst_token, t_data *data)
+t_comm	*ft_get_command(t_count *cnt, t_list *lst_token, t_data *data)
 {
 	t_comm	*new_command;
 
