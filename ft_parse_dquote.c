@@ -22,20 +22,6 @@ static char	*ft_strjoin_and_free(char *str, char *tmp2, char *tmp3)
 	ft_free_ptr(tmp3);
 	return (str_ret);
 }
-//
-//void	ft_dquot_inside(char **str, int *i, char **env)
-//{
-//	while (str[++(*i)])
-//	{
-//		if (*str[*i] == '\\' && (*str[*i + 1] == '\"' || *str[*i + 1] == '$'
-//				|| *str[*i + 1] == '\\'))
-//			*str = ft_slash(*str, i);
-//		if (*str[*i] == '$')
-//			*str = ft_dollar(*str, i, env);
-//		if (*str[*i] == '\"')
-//			break ;
-//	}
-//}
 
 char	*ft_dquot(char *str, int *i, char **env)
 {
@@ -62,6 +48,6 @@ char	*ft_dquot(char *str, int *i, char **env)
 	str = ft_strjoin(tmp, tmp2);
 	ft_free_ptr(tmp);
 	tmp = ft_strjoin_and_free(str, tmp2, tmp3);
-	(*i)++;
+	*i -= 2;
 	return (tmp);
 }

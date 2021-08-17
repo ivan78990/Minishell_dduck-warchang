@@ -42,6 +42,15 @@ char	*ft_get_val_for_key(t_lst_env *lst_env, char *key)
 	return (NULL);
 }
 
+void	ft_write_new_shlvl(t_lst_env *lst_env)
+{
+	t_lst_env	*tmp_env3;
+
+	tmp_env3 = ft_init_lst_env("SHLVL=1");
+	ft_parse_env(tmp_env3);
+	ft_lstadd_back_env(&lst_env, tmp_env3);
+}
+
 void	ft_up_shlvl(t_lst_env *lst_env, t_data *data)
 {
 	int		new_shlvl_int;
@@ -53,8 +62,10 @@ void	ft_up_shlvl(t_lst_env *lst_env, t_data *data)
 	val_shlvl = ft_get_val_for_key(lst_env, "SHLVL");
 	if (!val_shlvl)
 	{
-		ft_put_error("No ENV SHLVL", 0);
-		exit(EXIT_FAILURE);
+		ft_put_error("Not SHLVL in ENV", 0);
+		ft_write_new_shlvl(lst_env);
+		data->count_env++;
+		val_shlvl = ft_get_val_for_key(lst_env, "SHLVL");
 	}
 	new_shlvl_int = ft_atoi(val_shlvl) + 1;
 	new_shlvl_str_val = ft_itoa(new_shlvl_int);

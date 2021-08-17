@@ -12,6 +12,7 @@ SRCS		=	exec/export.c \
 				exec_fd_chart2.c \
                 exec_fork.c \
 				ft_export_utils.c	\
+				ft_export_check.c	\
 				ft_parser.c \
 				readline.c	\
 				ft_iterators_token.c	\
