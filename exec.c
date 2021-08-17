@@ -30,6 +30,7 @@ int	execution1(char *path, t_comm *comm, t_data *data)
 	pid_t	pid;
 	int		ret_value;
 
+	signals_ign(2);
 	if (exec_fd(comm))
 		return (-1);
 	pid = fork();

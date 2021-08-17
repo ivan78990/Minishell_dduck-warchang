@@ -9,13 +9,13 @@ void	ft_exit(char **args)
 	{
 		if (args[1])
 		{
-			ft_putendl_fd("exit", 1);
-			ft_putendl_fd("minishell: exit: too many arguments", 1);
+			ft_putendl_fd("exit", 2);
+			ft_putendl_fd("minishell: exit: too many arguments", 2);
 			return ;
 		}
 		if (ft_isalpha(args[0][0]))
 		{
-			ft_putendl_fd("minishell: exit : numeric argument required", 1);
+			ft_putendl_fd("minishell: exit : numeric argument required", 2);
 			exit(255);
 		}
 		else
@@ -24,17 +24,17 @@ void	ft_exit(char **args)
 			ret_exit = ft_atoi(args[0]);
 			if (ret_exit <= 0)
 			{
-				ft_putendl_fd("minishell: exit : numeric argument required", 1);
+				ft_putendl_fd("minishell: exit : numeric argument required", 2);
 				g_global.return_value = 255;
 				exit(255);
 
 			}
-			ft_putendl_fd("exit", 1);
+			ft_putendl_fd("exit", 2);
 			g_global.return_value = ret_exit;
 			exit(ret_exit);
 		}
 	}
-	ft_putendl_fd("exit", 1);
+	ft_putendl_fd("exit", 2);
 //	ft_putendl_fd("minishell: exit : numeric argument required", 1);
 	g_global.return_value = ret_exit;
 	exit(ret_exit);

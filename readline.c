@@ -67,6 +67,7 @@ void	wait_child_process(t_list *lst_comm)
 	comm = NULL;
 	while (lst_comm)
 	{
+
 		comm = lst_comm->content;
 		wait_pid = waitpid(comm->pid, &status, 0);
 		i = (-1 == wait_pid);
@@ -93,8 +94,8 @@ int	main(int argc, char *argv[], char **env)
 	(void)argv;
 	(void)argc;
 	input = NULL;
-	signal_normal();
 	data = ft_init_data(env);
+	signal_normal();
 	ft_prepare(data, env);
 	cycle_readline(lst_comm, data, input);
 	conrol_d();

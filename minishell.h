@@ -84,6 +84,7 @@ typedef struct s_global // use for signals
 
 t_global	g_global;
 
+void 		signals_ign(int signo);
 void		kill_child_process(t_list *lst_comm);
 t_list		*ft_preparser(t_data *data, char *input);
 void		wait_child_process(t_list *lst_comm);

@@ -2,8 +2,11 @@
 
 void	cycle_readline(t_list *lst_comm, t_data *data, char *input)
 {
+	rl_outstream = stderr;
 	while (!data->flag_end)
 	{
+		signal_normal();
+
 		input = readline("minishell: ");
 		if (input == NULL)
 			break ;
