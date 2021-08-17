@@ -2,7 +2,7 @@
 
 void	ft_exit(char **args)
 {
-	int	ret_exit;
+	long int	ret_exit;
 
 	ret_exit = 0;
 	if (args[0])
@@ -10,19 +10,32 @@ void	ft_exit(char **args)
 		if (args[1])
 		{
 			ft_putendl_fd("exit", 1);
-			ft_putendl_fd("bash: exit: too many arguments", 1);
-			g_global.return_value = 1;
-			exit(1);
+			ft_putendl_fd("minishell: exit: too many arguments", 1);
+			return ;
 		}
-		if (!ft_isalpha(args[0][0]))
+		if (ft_isalpha(args[0][0]))
 		{
+			ft_putendl_fd("minishell: exit : numeric argument required", 1);
+			exit(255);
+		}
+		else
+		{
+
 			ret_exit = ft_atoi(args[0]);
+			if (ret_exit <= 0)
+			{
+				ft_putendl_fd("minishell: exit : numeric argument required", 1);
+				g_global.return_value = 255;
+				exit(255);
+
+			}
 			ft_putendl_fd("exit", 1);
 			g_global.return_value = ret_exit;
 			exit(ret_exit);
 		}
 	}
 	ft_putendl_fd("exit", 1);
+//	ft_putendl_fd("minishell: exit : numeric argument required", 1);
 	g_global.return_value = ret_exit;
 	exit(ret_exit);
 }
