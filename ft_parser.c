@@ -28,7 +28,7 @@ char	*ft_slash(char *str, int *i)
 	return (tmp3);
 }
 
-char *ft_quot(char *str, int *i, int *flag_quote)
+char	*ft_quot(char *str, int *i, int *flag_quote)
 {
 	int		j;
 	char	*tmp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_chart2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:40:37 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:40:39 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	is_executable(char *path, struct stat f, t_comm *comm, t_data
@@ -24,7 +36,7 @@ int	is_builtin(t_comm *comm, t_data *data)
 	if (comm->arg[0])
 	{
 		if (ft_strequ(comm->arg[0], "exit"))
-			ft_exit(comm->arg + 1);
+			return (ft_exit(comm->arg + 1));
 		else if (!ft_strcmp(comm->arg[0], "pwd"))
 			return (ft_pwd(comm));
 		else if (ft_strequ(comm->arg[0], "echo"))

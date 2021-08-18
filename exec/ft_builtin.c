@@ -1,18 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:38:28 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:38:30 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void	ft_exit(char **args)
+void	exit_mini(char **args)
 {
-	long int	ret_exit;
+	int	ret_exit;
 
-	ret_exit = 0;
 	if (args[0])
 	{
-		if (args[1])
-		{
-			ft_putendl_fd("exit", 2);
-			ft_putendl_fd("minishell: exit: too many arguments", 2);
-			return ;
-		}
 		if (ft_isalpha(args[0][0]))
 		{
 			ft_putendl_fd("minishell: exit : numeric argument required", 2);
@@ -26,15 +31,30 @@ void	ft_exit(char **args)
 				ft_putendl_fd("minishell: exit : numeric argument required", 2);
 				g_global.return_value = 255;
 				exit(255);
-
 			}
 			ft_putendl_fd("exit", 2);
 			g_global.return_value = ret_exit;
 			exit(ret_exit);
 		}
 	}
+}
+
+int	ft_exit(char **args)
+{
+	long int	ret_exit;
+
+	ret_exit = 0;
+	if (args[0])
+	{
+		if (args[1])
+		{
+			ft_putendl_fd("exit", 2);
+			ft_putendl_fd("minishell: exit: too many arguments", 2);
+			return (1);
+		}
+		exit_mini(args);
+	}
 	ft_putendl_fd("exit", 2);
-//	ft_putendl_fd("minishell: exit : numeric argument required", 1);
 	g_global.return_value = ret_exit;
 	exit(ret_exit);
 }

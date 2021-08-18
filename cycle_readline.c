@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cycle_readline.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:40:12 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:40:13 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	cycle_readline(t_list *lst_comm, t_data *data, char *input)
@@ -6,7 +18,6 @@ void	cycle_readline(t_list *lst_comm, t_data *data, char *input)
 	while (!data->flag_end)
 	{
 		signal_normal();
-
 		input = readline("minishell: ");
 		if (input == NULL)
 			break ;

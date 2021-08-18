@@ -44,12 +44,7 @@ void	ft_exprt_prcssr(t_lst_env *lst_env, char *key, char *val, char *str_env)
 	if (val)
 		lst_env->val = ft_strdup(val);
 	else
-	{
-//		ft_free_ptr(lst_env->val);
-//		lst_env->val = ft_strdup(""); //NEW
-		lst_env->val = NULL; //NEW
-
-	}
+		lst_env->val = NULL;
 	lst_env->env = ft_strdup(str_env);
 }
 

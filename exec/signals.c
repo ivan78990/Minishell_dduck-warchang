@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:38:52 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:38:54 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	ctrl_c(int signo)
@@ -27,7 +39,7 @@ void	signal_normal(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void signals_ign(int signo)
+void	signals_ign(int signo)
 {
 	if (signo)
 	{
@@ -36,12 +48,12 @@ void signals_ign(int signo)
 	}
 }
 
-void signals_def(int signo)
+void	signals_def(int signo)
 {
 	if (signo)
 	{
-//		signal(SIGINT, SIG_DFL);
-//		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		ctrl_c(SIGINT);
 	}
 }

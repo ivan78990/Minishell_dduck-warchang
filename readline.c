@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readline.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:50:28 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:50:30 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_list	*ft_preparser(t_data *data, char *input)
@@ -68,11 +80,9 @@ void	wait_child_process(t_list *lst_comm)
 	comm = NULL;
 	while (lst_comm)
 	{
-//		printf("wait_child_process1\n");
 		comm = lst_comm->content;
 		wait_pid = waitpid(comm->pid, &status, 0);
-//		printf("wait_pid[%d]\n", wait_pid);
-		i = (-1 == wait_pid );
+		i = (-1 == wait_pid);
 		if (!i)
 		{
 			g_global.return_value = WEXITSTATUS(status);

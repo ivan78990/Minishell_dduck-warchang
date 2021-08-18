@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export_check.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:46:58 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:47:01 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int ft_export_check_str(char *args)
+int	ft_export_check_str(char *args)
 {
-	int i;
-	int separ;
-	char *key;
-	char *pos_equals;
-
+	int		i;
+	int		separ;
+	char	*key;
+	char	*pos_equals;
 
 	i = -1;
 	pos_equals = NULL;
@@ -18,7 +29,7 @@ int ft_export_check_str(char *args)
 	}
 	else
 		key = ft_strdup(args);
-	while(key[++i])
+	while (key[++i])
 	{
 		if (ft_strchr(("<>;-=+~?)(\\|"), key[i]))
 		{
@@ -30,7 +41,7 @@ int ft_export_check_str(char *args)
 	return (1);
 }
 
-int ft_export_check(char **args, int i)
+int	ft_export_check(char **args, int i)
 {
 	if (!ft_isalpha(args[i][0]) && args[i][0] != '_')
 		return (0);

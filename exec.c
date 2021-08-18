@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:40:25 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:40:26 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	error_text(char *name)
@@ -54,11 +66,8 @@ int	execution1(char *path, t_comm *comm, t_data *data)
 int	execution2(char	*path, t_comm *comm, t_data *data)
 {
 	int	ret_value;
-	int	flag_redir_write;
-	int	flag_redir_read;
 
 	signals_def(SIGINT);
-//	ft_get_flag_redir(&flag_redir_read, &flag_redir_write, comm->lst_redir);
 	if (exec_fd(comm))
 		return (-1);
 	if (comm->fd_read >= 0 )

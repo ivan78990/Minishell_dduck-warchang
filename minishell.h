@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:42:08 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:42:10 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -84,8 +96,8 @@ typedef struct s_global // use for signals
 
 t_global	g_global;
 
-void 		signals_def(int signo);
-void 		signals_ign(int signo);
+void		signals_def(int signo);
+void		signals_ign(int signo);
 void		kill_child_process(t_list *lst_comm);
 t_list		*ft_preparser(t_data *data, char *input);
 void		wait_child_process(t_list *lst_comm);
@@ -128,7 +140,7 @@ void		ft_free_arr(char **arr);
 void		ft_free_ptr(void *ptr);
 void		ft_init_count(t_count *count);
 ////ft_parser
-char *ft_parse_processor(char *str, char **env, int *flag_qoute);
+char		*ft_parse_processor(char *str, char **env, int *flag_qoute);
 char		*ft_slash(char *str, int *i);
 ////ft_token
 t_list		*ft_get_list_comm(t_data *data, t_list *token);
@@ -162,7 +174,7 @@ int			*ft_get_posenv(char *str, int *i);
 ////ft_parse_dollar_utils
 void		ft_check_env(char **env, t_count *cnt, char *tmp);
 ////ft_parse_dquote
-char *ft_dquot(char *str, int *i, char **env, int *flag_quote);
+char		*ft_dquot(char *str, int *i, char **env, int *flag_quote);
 ////ft_parser_utils
 //int	ft_symcount(t_list *lst_comm);
 ////ft_utils
@@ -193,9 +205,9 @@ void		ft_free_redir_str(void *redir_strct);
 ////ft_export
 void		ft_get_new_lst_env(t_data *data, char *new_str_env, char *key,
 				char *val);
-int ft_flag_token(t_list *lst_token, t_data *data);
+int			ft_flag_token(t_list *lst_token, t_data *data);
 ////
-void		ft_exit(char **args);
+int			ft_exit(char **args);
 int			ft_pwd(t_comm *comm);
 int			ft_print_env(t_data *data, t_comm *comm, char **args);
 int			dub_rev_redir(char *stop_word);
@@ -204,9 +216,9 @@ t_lst_env	*ft_lst_env_del_elem(t_lst_env *lst_before, t_lst_env *lst_env);
 void		ft_new_val_for_key(t_data *data, char *key, char *val);
 ////TEST
 int			ft_print_arr_env(char **arr);
-int ft_print_token(t_list *token, char *name);
+int			ft_print_token(t_list *token, char *name);
 void		ft_print_env_test(t_lst_env *lst_env);
-void ft_print_comm(t_list *lst_comm, char *name);
+void		ft_print_comm(t_list *lst_comm, char *name);
 
 ////List_Utils
 t_lst_env	*ft_init_lst_env(char *cont_env);

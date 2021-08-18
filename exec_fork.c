@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_fork.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:41:24 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:41:25 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	creat_pipe(t_list *lst_comm, int *fds, int in)
@@ -28,7 +40,6 @@ void	exec_child(int *fds, t_comm *comm, t_data *data)
 	close(fds[0]);
 	if (exec_fd(comm))
 		exit(1);
-
 	if (is_builtin(comm, data))
 		exit(0);
 	if (is_bins(comm, data))

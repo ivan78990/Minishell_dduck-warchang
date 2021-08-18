@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: warchang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/18 10:38:06 by warchang          #+#    #+#             */
+/*   Updated: 2021/08/18 10:38:08 by warchang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	n_flag(char **args, int j)
@@ -17,7 +29,6 @@ int	n_flag(char **args, int j)
 	return (-1);
 }
 
-
 void	printing(t_comm *comm, int j, int fd, int n)
 {
 	while (j < comm->cnt_arg)
@@ -33,12 +44,11 @@ void	printing(t_comm *comm, int j, int fd, int n)
 
 int	echo_b(t_comm *comm, int fd)
 {
-	int j;
-	int no_n;
+	int	j;
+	int	no_n;
 
 	j = 1;
 	no_n = 0;
-
 	if (comm->cnt_arg > 0)
 	{
 		if (ft_strnstr(comm->arg[j], "-n", 2) != NULL && comm->arg[j + 1])

@@ -23,7 +23,7 @@ static char	*ft_strjoin_and_free(char *str, char *tmp2, char *tmp3)
 	return (str_ret);
 }
 
-char *ft_dquot(char *str, int *i, char **env, int *flag_quote)
+char	*ft_dquot(char *str, int *i, char **env, int *flag_quote)
 {
 	int		j;
 	char	*tmp;
