@@ -26,9 +26,9 @@ static char	*ft_strjoin_and_free(char *str, char *tmp2, char *tmp3)
 char	*ft_dquot(char *str, int *i, char **env, int *flag_quote)
 {
 	int		j;
-	char	*tmp;
-	char	*tmp2;
-	char	*tmp3;
+	char	*tmp_bef;
+	char	*tmp_core;
+	char	*tmp_aft;
 
 	j = *i;
 	*flag_quote = 1;
@@ -42,12 +42,12 @@ char	*ft_dquot(char *str, int *i, char **env, int *flag_quote)
 		if (str[*i] == '\"')
 			break ;
 	}
-	tmp = ft_substr(str, 0, j);
-	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-	tmp3 = ft_strdup(str + *i + 1);
+	tmp_bef = ft_substr(str, 0, j);
+	tmp_core = ft_substr(str, j + 1, *i - j - 1);
+	tmp_aft = ft_strdup(str + *i + 1);
 	ft_free_ptr(str);
-	str = ft_strjoin(tmp, tmp2);
-	ft_free_ptr(tmp);
-	tmp = ft_strjoin_and_free(str, tmp2, tmp3);
-	return (tmp);
+	str = ft_strjoin(tmp_bef, tmp_core);
+	ft_free_ptr(tmp_bef);
+	tmp_bef = ft_strjoin_and_free(str, tmp_core, tmp_aft);
+	return (tmp_bef);
 }
